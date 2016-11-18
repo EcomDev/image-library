@@ -1,0 +1,42 @@
+{
+    "name": "ecomdev/image-library",
+    "description": "Image library with long-running processes support at its core design",
+    "type": "library",
+    "require": {
+        "php": "~7.0",
+        "ext-exif": "*"
+    },
+    "suggest": {
+        "ext-gd": "In order to use GD driver it is required to have PHP GD library"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.1",
+        "phpspec/nyan-formatters": "^2.0",
+        "ciaranmcnulty/phpspec-typehintedmethods": "^2.0",
+        "squizlabs/php_codesniffer": "^2.7",
+        "phpmd/phpmd": "^2.4",
+        "henrikbjorn/phpspec-code-coverage": "^3.0",
+        "phpunit/phpunit": "^5.6"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "autoload": {
+        "psr-4": {
+           "EcomDev\\Image\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\EcomDev\\Image\\": "tests/spec/",
+            "EcomDev\\Image\\TestIntegration\\": "tests/integration/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Chepurnyi",
+            "email": "ivan.chepurnyi@ecomdev.org"
+        }
+    ]
+}

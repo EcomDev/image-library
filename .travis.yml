@@ -1,0 +1,27 @@
+sudo: false
+
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1 
+
+cache:
+  directories:
+    - vendor
+    - bin
+
+before_script:
+  - rm composer.lock
+  - composer self-update
+  - composer install
+
+script:
+  - bin/phpcs
+  - bin/phpmd src/ text cleancode,controversial,design,naming,codesize
+  - bin/phpspec run --config phpspec.travis.yml
+  - bin/phpunit
+
+after_script:
+  - bin/coveralls -v

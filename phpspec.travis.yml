@@ -1,0 +1,13 @@
+suites:
+  default:
+    namespace: EcomDev\ImageResizeServer
+    psr4_prefix: EcomDev\ImageResizeServer
+
+formatter.name: pretty
+
+code_coverage:
+  format: clover
+  output: build/coverage.xml
+
+extensions:
+  PhpSpecCodeCoverage\CodeCoverageExtension: ~
