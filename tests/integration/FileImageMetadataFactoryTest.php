@@ -22,9 +22,10 @@ namespace EcomDev\Image\TestIntegration;
 use EcomDev\Image\FlipDirection;
 use EcomDev\Image\ImageMetadata;
 use EcomDev\Image\FileImageMetadataFactory;
+use PHPUnit\Framework\TestCase;
 
 
-class FileImageMetadataFactoryTest extends \PHPUnit_Framework_TestCase
+class FileImageMetadataFactoryTest extends TestCase
 {
     /**
      * @var ExifDimensionFactory

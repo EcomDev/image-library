@@ -16,33 +16,33 @@
  */
 
 
-namespace EcomDev\Image\TestIntegration;
+namespace EcomDev\Image\TestIntegration\Gd;
 
 use EcomDev\Image\FlipDirection;
-use EcomDev\Image\GdResource;
+use EcomDev\Image\Gd;
 use EcomDev\Image\ImageMetadata;
-use EcomDev\Image\GdDimensionFactory;
+use PHPUnit\Framework\TestCase;
 
 
-class GdImageMetadataFactoryTest extends \PHPUnit_Framework_TestCase
+class ImageMetadataFactoryTest extends TestCase
 {
     private $factory;
 
     public function setUp()
     {
-        $this->factory = new GdDimensionFactory();
+        $this->factory = new Gd\ImageMetadataFactory();
     }
 
     public function test_it_creates_metadata_from_gd_image_resource()
     {
-        $image = new GdResource(imagecreatetruecolor(500, 20));
+        $image = new Gd\Resource(imagecreatetruecolor(500, 20));
         $dimension = $this->factory->create($image, 'image/jpeg');
         $this->assertImageMetadata($dimension, 500, 20, 'image/jpeg', 0, FlipDirection::none());
     }
 
     public function test_it_creates_metadata_with_custom_angle_and_flip_direction()
     {
-        $image = new GdResource(imagecreatetruecolor(500, 20));
+        $image = new Gd\Resource(imagecreatetruecolor(500, 20));
         $dimension = $this->factory->create($image, 'image/jpeg', 90, FlipDirection::horizontal());
         $this->assertImageMetadata($dimension, 500, 20, 'image/jpeg', 90, FlipDirection::horizontal());
     }

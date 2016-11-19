@@ -16,9 +16,9 @@
  */
 
 
-namespace EcomDev\Image;
+namespace EcomDev\Image\Gd;
 
-class GdResource implements Resource
+class Resource implements \EcomDev\Image\Resource
 {
     /**
      * Raw GD image resource

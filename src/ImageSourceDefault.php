@@ -19,18 +19,25 @@ declare(strict_types=1);
 
 namespace EcomDev\Image;
 
-/**
- * Image source implementation
- */
-interface ImageSource
+class ImageSourceDefault implements ImageSource
 {
-    /**
-     * Returns image resource required for image manipulations
-     */
-    public function getResource(): Resource;
+    private $resource;
 
-    /**
-     * Image dimension information
-     */
-    public function getMetadata(): ImageMetadata;
+    private $metadata;
+
+    public function __construct(Resource $resource, ImageMetadata $imageMetadata)
+    {
+        $this->resource = $resource;
+        $this->metadata = $imageMetadata;
+    }
+
+    public function getResource(): Resource
+    {
+        return $this->resource;
+    }
+
+    public function getMetadata(): ImageMetadata
+    {
+        return $this->metadata;
+    }
 }

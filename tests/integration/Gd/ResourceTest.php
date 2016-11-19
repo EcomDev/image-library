@@ -16,18 +16,25 @@
  */
 
 
-namespace EcomDev\Image\TestIntegration;
+namespace EcomDev\Image\TestIntegration\Gd;
 
 
-use EcomDev\Image\GdResource;
+use EcomDev\Image\Gd;
+use EcomDev\Image\Resource;
+use PHPUnit\Framework\TestCase;
 
 
-class GdResourceTest extends \PHPUnit_Framework_TestCase
+class ResourceTest extends TestCase
 {
+    function test_it_implements_resource_interface()
+    {
+        $this->assertInstanceOf(Resource::class, new Gd\Resource(imagecreatetruecolor(50, 50)));
+    }
+
     function test_it_does_pass_along_gd_resource()
     {
         $rawResource = imagecreatetruecolor(50, 50);
-        $resource = new GdResource($rawResource);
+        $resource = new Gd\Resource($rawResource);
         $this->assertTrue(is_resource($rawResource), 'Object is not destroyed at this point');
         $this->assertSame($rawResource, $resource->reveal());
     }
@@ -38,13 +45,13 @@ class GdResourceTest extends \PHPUnit_Framework_TestCase
      */
     function test_it_does_not_allow_non_resource_input()
     {
-        new GdResource(null);
+        new Gd\Resource(null);
     }
 
     function test_it_destroys_image_resource_when_object_is_destroyed()
     {
         $rawResource = imagecreatetruecolor(50, 50);
-        $resource = new GdResource($rawResource);
+        $resource = new Gd\Resource($rawResource);
         unset($resource);
         $this->assertFalse(is_resource($rawResource));
     }

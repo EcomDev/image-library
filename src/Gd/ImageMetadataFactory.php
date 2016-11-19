@@ -16,9 +16,12 @@
  */
 
 
-namespace EcomDev\Image;
+namespace EcomDev\Image\Gd;
 
-class GdDimensionFactory
+use EcomDev\Image\FlipDirection;
+use EcomDev\Image\ImageMetadata;
+
+class ImageMetadataFactory
 {
     public function create(
         Resource $image,
