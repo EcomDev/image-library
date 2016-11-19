@@ -1,0 +1,2 @@
+coverage_clover: build/coverage-merged.xml
+json_path: build/coveralls-upload.json

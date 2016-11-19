@@ -2,7 +2,8 @@ suites:
   default:
     namespace: EcomDev\Image
     psr4_prefix: EcomDev\Image
-    spec_dir: %base_path%\tests
+    spec_path: tests
+
 formatter.name: nyan.cat
 extensions:
   PhpSpec\NyanFormattersExtension\Extension: ~

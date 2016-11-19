@@ -15,22 +15,20 @@
  * @author    Ivan Chepurnyi <ivan@ecomdev.org>
  */
 
-
 namespace EcomDev\Image;
 
-interface ImageSource
+/**
+ * Wrapper around system resource
+ *
+ * In case if all references to resource instance gets equal to 0
+ * it should automatically de-allocate all related memory
+ */
+interface Resource
 {
     /**
-     * Returns image resource required for image manipulations
+     * Reveals driver related image resource
      *
-     * @return Resource
+     * @return mixed
      */
-    public function getResource();
-
-    /**
-     * Image dimension information
-     *
-     * @return ImageMetadata
-     */
-    public function getMetadata();
+    public function reveal();
 }

@@ -1,13 +1,14 @@
 suites:
   default:
-    namespace: EcomDev\ImageResizeServer
-    psr4_prefix: EcomDev\ImageResizeServer
+    namespace: EcomDev\Image
+    psr4_prefix: EcomDev\Image
+    spec_path: tests
 
 formatter.name: pretty
 
 code_coverage:
-  format: clover
-  output: build/coverage.xml
+  format: php
+  output: build/cov/spec.php
 
 extensions:
   PhpSpecCodeCoverage\CodeCoverageExtension: ~

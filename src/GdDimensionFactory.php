@@ -18,19 +18,17 @@
 
 namespace EcomDev\Image;
 
-interface ImageSource
+class GdDimensionFactory
 {
-    /**
-     * Returns image resource required for image manipulations
-     *
-     * @return Resource
-     */
-    public function getResource();
+    public function create(
+        Resource $image,
+        string $mimeType,
+        int $rotationAngle = 0,
+        FlipDirection $flipDirection = null
+    ) {
+        $width = imagesx($image->reveal());
+        $height = imagesy($image->reveal());
 
-    /**
-     * Image dimension information
-     *
-     * @return ImageMetadata
-     */
-    public function getMetadata();
+        return new ImageMetadata($width, $height, $mimeType, $rotationAngle, $flipDirection);
+    }
 }
