@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace EcomDev\Image;
 
+/**
+ * Class FlipDirection
+ */
 final class FlipDirection
 {
     // Image is not flipped

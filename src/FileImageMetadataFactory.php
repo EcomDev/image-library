@@ -48,7 +48,7 @@ class FileImageMetadataFactory
     {
         if ($mimeType == 'image/jpeg') {
             $data = exif_read_data($imageFile);
-            return $data['Orientation'] ?? 1;
+            return isset($data['Orientation']) ? $data['Orientation'] : 1;
         }
 
         return 1;

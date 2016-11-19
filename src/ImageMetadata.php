@@ -43,7 +43,7 @@ class ImageMetadata
         $this->height = $height;
         $this->mimeType = $mimeType;
         $this->rotationAngle = $rotationAngle;
-        $this->flipDirection = $flipDirection ?? FlipDirection::none();
+        $this->flipDirection = $flipDirection ?: FlipDirection::none();
     }
 
     public function getWidth(): int

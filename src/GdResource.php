@@ -21,6 +21,8 @@ namespace EcomDev\Image;
 class GdResource implements Resource
 {
     /**
+     * Raw GD image resource
+     *
      * @var resource
      */
     private $rawResource;
@@ -50,7 +52,7 @@ class GdResource implements Resource
     }
 
     /**
-     *
+     * Cleanups image resource from memory
      */
     public function __destruct()
     {

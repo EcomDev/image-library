@@ -5,55 +5,56 @@ declare(strict_types=1);
 namespace EcomDev\Image;
 
 /**
- * Horrible EXIF orientation code map
+ * Horrible EXIF orientation code map magic
  */
 class OrientationMap
 {
-    const NORMAL = 1;
-    const MIRROR_HORIZONTAL = 2;
-    const ROTATED_180 = 3;
-    const MIRROR_VERTICAL = 4;
-    const MIRROR_HORIZONTAL_ROTATED_270 = 5;
-    const ROTATED_270 = 6;
-    const MIRROR_HORIZONTAL_ROTATED_90 = 7;
-    const ROTATED_90 = 8;
+    private $rotateAngleToOrientationMap;
 
-    public function rotationAngle(int $orientation)
+    private $flipDirectionToOrientationMap;
+
+    public function __construct()
     {
-        $angle = 0;
-        switch ($orientation) {
-            case self::ROTATED_180:
-                $angle = 180;
-                break;
-            case self::ROTATED_90:
-            case self::MIRROR_HORIZONTAL_ROTATED_90:
-                $angle = 90;
-                break;
-
-            case self::ROTATED_270:
-            case self::MIRROR_HORIZONTAL_ROTATED_270:
-                $angle = 270;
-                break;
-        }
-
-        return $angle;
+        $this->initFlipDirectionToOrientation();
+        $this->initRotationAngleToOrientation();
     }
 
-    public function flipDirection(int $orientation)
+    public function rotationAngle(int $orientation): int
     {
-        $direction = FlipDirection::none();
-        switch ($orientation) {
-            case self::MIRROR_HORIZONTAL:
-            case self::MIRROR_HORIZONTAL_ROTATED_90:
-            case self::MIRROR_HORIZONTAL_ROTATED_270:
-                $direction = FlipDirection::horizontal();
-                break;
-
-            case self::MIRROR_VERTICAL:
-                $direction = FlipDirection::vertical();
-                break;
+        if (isset($this->rotateAngleToOrientationMap[$orientation])) {
+            return $this->rotateAngleToOrientationMap[$orientation];
         }
 
-        return $direction;
+        return 0;
+    }
+
+    public function flipDirection(int $orientation): FlipDirection
+    {
+        if (isset($this->flipDirectionToOrientationMap[$orientation])) {
+            return $this->flipDirectionToOrientationMap[$orientation];
+        }
+
+        return FlipDirection::none();
+    }
+
+    private function initFlipDirectionToOrientation()
+    {
+        $this->flipDirectionToOrientationMap = [
+            2 => FlipDirection::horizontal(),
+            7 => FlipDirection::horizontal(),
+            5 => FlipDirection::horizontal(),
+            4 => FlipDirection::vertical()
+        ];
+    }
+
+    private function initRotationAngleToOrientation()
+    {
+        $this->rotateAngleToOrientationMap = [
+            8 => 90,
+            7 => 90,
+            3 => 180,
+            6 => 270,
+            5 => 270
+        ];
     }
 }
