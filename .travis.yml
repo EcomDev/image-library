@@ -10,7 +10,6 @@ matrix:
   allow_failures:
     - php: 7.1
 
-
 cache:
   directories:
     - vendor
@@ -24,7 +23,7 @@ before_script:
 
 script:
   - bin/phpcs
-  - bin/phpmd src/ text cleancode,controversial,design,naming,codesize
+  - bin/phpmd src/ text phpmd.ruleset.xml
   - bin/phpunit --colors --coverage-php=build/cov/integration.php
   - bin/phpspec run --config phpspec.travis.yml
 
