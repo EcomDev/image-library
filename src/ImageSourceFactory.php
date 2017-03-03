@@ -14,30 +14,11 @@
  * @license   https://opensource.org/licenses/MIT The MIT License (MIT)
  * @author    Ivan Chepurnyi <ivan@ecomdev.org>
  */
-
-declare(strict_types=1);
-
 namespace EcomDev\Image;
 
-class ImageSourceDefault implements ImageSource
+interface ImageSourceFactory
 {
-    private $resource;
+    public function createFromFile($fileName): ImageSource;
 
-    private $metadata;
-
-    public function __construct(Resource $resource, ImageMetadata $imageMetadata)
-    {
-        $this->resource = $resource;
-        $this->metadata = $imageMetadata;
-    }
-
-    public function getResource(): Resource
-    {
-        return $this->resource;
-    }
-
-    public function getMetadata(): ImageMetadata
-    {
-        return $this->metadata;
-    }
+    public function createFromResource(Resource $resource, ImageMetadata $metadata): ImageSource;
 }

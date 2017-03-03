@@ -28,9 +28,18 @@ class FileImageMetadataFactory
         $this->orientationMap = new OrientationMap();
     }
 
-    public function create(string $imageFile)
+    public function createFromFile(string $imageFile)
     {
+        if (!file_exists($imageFile)) {
+            throw new ImageFileNotFoundException($imageFile);
+        }
+
         $sizeInfo = @getimagesize($imageFile);
+
+        if ($sizeInfo === false) {
+            throw new ImageNotReadableException($imageFile);
+        }
+
         list($width, $height) = $sizeInfo;
 
         $orientation = $this->extractImageOrientation($imageFile, $sizeInfo['mime']);

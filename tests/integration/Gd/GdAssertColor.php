@@ -16,13 +16,13 @@
  */
 
 
-namespace EcomDev\Image\TestIntegration\Gd;
+namespace EcomDev\Image\Gd;
 
 
 use EcomDev\Image\Resource;
 use PHPUnit\Framework\TestCase;
 
-class AssertColor
+class GdAssertColor
 {
     private $testCase;
 
@@ -30,7 +30,6 @@ class AssertColor
     {
         $this->testCase = $testCase;
     }
-
 
     public function assertColorAt(Resource $image, int $hexColor, int $x, int $y, int $colorDelta = 3)
     {

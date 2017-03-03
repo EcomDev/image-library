@@ -30,7 +30,7 @@
     "autoload-dev": {
         "psr-4": {
             "spec\\EcomDev\\Image\\": "tests/spec/",
-            "EcomDev\\Image\\TestIntegration\\": "tests/integration/"
+            "EcomDev\\Image\\": "tests/integration/"
         }
     },
     "license": "MIT",

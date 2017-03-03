@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace EcomDev\Image;
 
 /**
- * Horrible EXIF orientation code map magic
+ * EXIF orientation class map
  */
 class OrientationMap
 {

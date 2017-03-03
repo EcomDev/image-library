@@ -18,27 +18,22 @@
 
 namespace EcomDev\Image\Gd;
 
-class Resource implements \EcomDev\Image\Resource
+class CreatedResource implements \EcomDev\Image\Resource
 {
-    /**
-     * Raw GD image resource
-     *
-     * @var resource
-     */
-    private $rawResource;
+    private $resource;
 
-    public function __construct($rawResource)
+    public function __construct($resource)
     {
-        if (!is_resource($rawResource)) {
+        if (!is_resource($resource) || get_resource_type($resource) !== 'gd') {
             throw new \InvalidArgumentException(
                 sprintf(
                     'A variable of type "%s" is not a valid GD resource',
-                    gettype($rawResource)
+                    gettype($resource)
                 )
             );
         }
 
-        $this->rawResource = $rawResource;
+        $this->resource = $resource;
     }
 
     /**
@@ -48,7 +43,7 @@ class Resource implements \EcomDev\Image\Resource
      */
     public function reveal()
     {
-        return $this->rawResource;
+        return $this->resource;
     }
 
     /**
@@ -56,8 +51,8 @@ class Resource implements \EcomDev\Image\Resource
      */
     public function __destruct()
     {
-        if (is_resource($this->rawResource)) {
-            imagedestroy($this->rawResource);
+        if (is_resource($this->resource)) {
+            imagedestroy($this->resource);
         }
     }
 }

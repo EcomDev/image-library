@@ -18,20 +18,21 @@
 
 namespace EcomDev\Image\Gd;
 
-use EcomDev\Image\FlipDirection;
-use EcomDev\Image\ImageMetadata;
-
-class ImageMetadataFactory
+class FileResourceFactory
 {
-    public function create(
-        Resource $image,
-        string $mimeType,
-        int $rotationAngle = 0,
-        FlipDirection $flipDirection = null
-    ) {
-        $width = imagesx($image->reveal());
-        $height = imagesy($image->reveal());
+    private $factoryMethodByMimeType;
 
-        return new ImageMetadata($width, $height, $mimeType, $rotationAngle, $flipDirection);
+    public function __construct()
+    {
+        $this->factoryMethodByMimeType = [
+            'image/jpeg' => 'imagecreatefromjpeg',
+            'image/gif' => 'imagecreatefromgif',
+            'image/png' => 'imagecreatefrompng'
+        ];
+    }
+
+    public function createWithMimeType($file, $mimeType): CreatedResource
+    {
+        return new CreatedResource($this->factoryMethodByMimeType[$mimeType]($file));
     }
 }
