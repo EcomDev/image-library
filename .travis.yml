@@ -28,4 +28,5 @@ script:
   - bin/phpspec run --config phpspec.travis.yml
 
 after_script:
+  - bin/phpcov merge --clover build/coverage-merged.xml -- build/
   - bin/coveralls -v
