@@ -1,4 +1,2 @@
-coverage_clover:
-  - build/coverage-integration.xml
-  - build/coverage-spec.xml
+coverage_clover: build/coverage-merged.xml
 json_path: build/upload-coverall.json

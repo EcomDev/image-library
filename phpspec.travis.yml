@@ -7,8 +7,8 @@ suites:
 formatter.name: pretty
 
 code_coverage:
-  format: clover
-  output: build/coverage-spec.xml
+  format: php
+  output: build/coverage-spec.cov
 
 extensions:
   PhpSpecCodeCoverage\CodeCoverageExtension: ~

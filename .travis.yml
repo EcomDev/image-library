@@ -24,7 +24,7 @@ before_script:
 script:
   - bin/phpcs
   - bin/phpmd src/ text phpmd.ruleset.xml
-  - bin/phpunit --colors --coverage-clover=build/coverage-integration.xml
+  - bin/phpunit --colors --coverage-php=build/coverage-integration.cov
   - bin/phpspec run --config phpspec.travis.yml
 
 after_script:

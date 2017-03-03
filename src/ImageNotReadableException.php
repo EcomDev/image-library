@@ -20,6 +20,7 @@ namespace EcomDev\Image;
 
 /**
  * Exception that is thrown if image is not readable
+ *
  */
 class ImageNotReadableException extends \RuntimeException
 {
