@@ -20,7 +20,6 @@ namespace EcomDev\Image;
 
 /**
  * Exception that is thrown if image file does not exists
- *
  */
 class ImageFileNotFoundException extends \RuntimeException
 {
